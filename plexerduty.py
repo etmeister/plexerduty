@@ -54,6 +54,10 @@ for incident in incidents:
     incident_json = incident.trigger_summary_data.to_json()
     subject = incident.service.name
     message = " - ".join(item[1] for item in incident_json.items())
+
+    if incident.status != 'triggered':
+        message = incident.last_status_change_by.name + " " + incident.status + " " + message
+
     if args.verbose:
         print "Sending incident popup (%s - %s)" % (subject,message)
     data = {"id":1,"jsonrpc":"2.0","method":"GUI.ShowNotification","params":{"title":subject,"message":message}}

@@ -30,7 +30,7 @@ if args.verbose:
 
 pager = PagerDuty(config.get("settings","pagerdutyHost"),config.get("settings","pagerdutyApiKey"))
 
-currentTime = datetime.now()
+currentTime = datetime.utcnow()
 cronInterval = config.getint("settings","cronInterval")
 pastTime = currentTime - timedelta(minutes=cronInterval)
 

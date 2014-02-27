@@ -76,7 +76,7 @@ class Plexerduty:
         if self.args.verbose:
             print "Sending incident popup (%s - %s)" % (subject,message)
         data = {"id":1,"jsonrpc":"2.0","method":"GUI.ShowNotification","params":{"title":subject,"message":message}}
-        req = urllib2.Request(config.get("settings","plexApiUrl"))
+        req = urllib2.Request(self.config.get("settings","plexApiUrl"))
         req.add_header('Content-Type', 'application/json')
         req.add_header('Accept', 'application/json')
 
